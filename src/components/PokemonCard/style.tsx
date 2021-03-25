@@ -44,7 +44,7 @@ interface IPokemonCardStyle extends StyledComponentBase<any, any, {}, never> {
 const PokemonCard: IPokemonCardStyle = styled(View)`
   flex: 1 1 50%;
   max-width: 49%;
-  background-color: ${(props: IPokemonCardComponent) =>
+  background-color: ${(props: {types: Partial<IPokemonType>}) =>
     PokemonCardTypes[props.types.primary.toLowerCase()].primary};
   padding: 10px;
   height: 140px;
@@ -66,7 +66,7 @@ PokemonCard.Tag = styled(View)`
   flex-direction: row;
 `;
 PokemonCard.Tag.Text = styled(Text)`
-  background-color: ${(props: IPokemonCardComponent) =>
+  background-color: ${(props: {types: Partial<IPokemonType>}) =>
     PokemonCardTypes[props.types.primary.toLowerCase()].secondary};
   padding: 5px 15px;
   border-radius: 100px;
