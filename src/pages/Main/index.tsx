@@ -8,19 +8,21 @@ export default () => {
       style={{
         flex: 1,
         flexWrap: 'wrap',
-        flexDirection: 'row'
+        flexDirection: 'row',
       }}>
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
+      <PokemonCard
+        name="Bulbasaur"
+        types={{primary: 'Grass', secondary: 'Poison'}}
+      />
+      <PokemonCard
+        name="Ivysaur"
+        types={{primary: 'Grass', secondary: 'Poison'}}
+      />
+      <PokemonCard
+        name="Venusaur"
+        types={{primary: 'Grass', secondary: 'Poison'}}
+      />
+      <PokemonCard name="Charmander" types={{primary: 'Fire'}} />
     </View>
   );
 };
