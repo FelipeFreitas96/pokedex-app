@@ -1,5 +1,5 @@
 import React from 'react';
-import PokemonCard, {PokemonCardTypes, IPokemonCardComponent} from './style';
+import PokemonCard, {IPokemonCardComponent} from './style';
 
 export default (_props: IPokemonCardComponent) => {
   const {types} = _props;
