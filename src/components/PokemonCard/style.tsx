@@ -2,7 +2,30 @@ import {View, Text} from 'react-native';
 import styled, {StyledComponentBase} from 'styled-components';
 import normalize from '../../helper/normalize';
 
-interface IPokemonCard extends StyledComponentBase<any, any, {}, never> {
+export type IPokemonType = {
+  primary: string;
+  secondary: string;
+};
+
+export interface IPokemonCardComponent {
+  name: string;
+  types: Partial<IPokemonType>;
+}
+
+export const PokemonCardTypes: {
+  [type: string]: IPokemonType;
+} = {
+  fire: {
+    primary: '#fb6c6c',
+    secondary: '#f88c8c',
+  },
+  grass: {
+    primary: '#48d0b0',
+    secondary: '#61e1c9',
+  },
+};
+
+interface IPokemonCardStyle extends StyledComponentBase<any, any, {}, never> {
   Container?: any;
   Name?: any;
   Tags?: any;
@@ -18,10 +41,11 @@ interface IPokemonCard extends StyledComponentBase<any, any, {}, never> {
       };
 }
 
-const PokemonCard: IPokemonCard = styled(View)`
+const PokemonCard: IPokemonCardStyle = styled(View)`
   flex: 1 1 50%;
   max-width: 49%;
-  background-color: #48d0b0;
+  background-color: ${(props: {types: Partial<IPokemonType>}) =>
+    PokemonCardTypes[props.types.primary.toLowerCase()].primary};
   padding: 10px;
   height: 140px;
   margin: 0.5%;
@@ -42,7 +66,8 @@ PokemonCard.Tag = styled(View)`
   flex-direction: row;
 `;
 PokemonCard.Tag.Text = styled(Text)`
-  background-color: #61e0c9;
+  background-color: ${(props: {types: Partial<IPokemonType>}) =>
+    PokemonCardTypes[props.types.primary.toLowerCase()].secondary};
   padding: 5px 15px;
   border-radius: 100px;
   color: white;

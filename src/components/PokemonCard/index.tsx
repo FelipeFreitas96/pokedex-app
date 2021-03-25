@@ -1,17 +1,24 @@
 import React from 'react';
-import PokemonCard from './style';
+import PokemonCard, {IPokemonCardComponent} from './style';
 
-export default () => {
+export default (_props: IPokemonCardComponent) => {
+  const {types} = _props;
   return (
-    <PokemonCard>
-      <PokemonCard.Name>Bulbasaur</PokemonCard.Name>
+    <PokemonCard types={types}>
+      <PokemonCard.Name>{_props.name}</PokemonCard.Name>
       <PokemonCard.Tags>
         <PokemonCard.Tag>
-          <PokemonCard.Tag.Text>Grass</PokemonCard.Tag.Text>
+          <PokemonCard.Tag.Text types={types}>
+            {_props.types.primary}
+          </PokemonCard.Tag.Text>
         </PokemonCard.Tag>
-        <PokemonCard.Tag>
-          <PokemonCard.Tag.Text>Poison</PokemonCard.Tag.Text>
-        </PokemonCard.Tag>
+        {_props.types.secondary && (
+          <PokemonCard.Tag>
+            <PokemonCard.Tag.Text types={types}>
+              {_props.types.secondary}
+            </PokemonCard.Tag.Text>
+          </PokemonCard.Tag>
+        )}
       </PokemonCard.Tags>
     </PokemonCard>
   );
