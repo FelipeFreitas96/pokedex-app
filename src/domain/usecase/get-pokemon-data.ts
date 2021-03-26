@@ -1,3 +1,4 @@
+import { IPokemon } from '../entities/pokemon';
 export interface IGetPokemonData {
-  execute(): string;
+  execute(id: number): Promise<IPokemon>;
 }
