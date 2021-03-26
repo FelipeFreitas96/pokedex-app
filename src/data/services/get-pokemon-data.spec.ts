@@ -31,4 +31,17 @@ describe('Get Pokemon Data', () => {
     const response = await sut.execute(1);
     expect(response.name).toBe('any_pokemon');
   });
+  it('should throws when pokemon not exists', async () => {
+    const {sut, axiosAdapterStub} = makeSut();
+    jest.spyOn(axiosAdapterStub, 'get').mockImplementationOnce(async () => {
+      return Promise.resolve({
+        data: null,
+        status: {
+          code: 400,
+          message: 'any_error',
+        }
+      });
+    });
+    expect(sut.execute(-1)).rejects.toThrow();
+  });
 });
