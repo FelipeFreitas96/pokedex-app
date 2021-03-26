@@ -2,7 +2,7 @@ import {IPokemon} from '../../domain/entities/pokemon';
 import {IGetPokemonData} from '../../domain/usecase/get-pokemon-data';
 import {IApi} from '../protocols/api';
 
-export class GetPokemonData implements IGetPokemonData {
+export class GetPokemonDataService implements IGetPokemonData {
   constructor(private readonly pokemonApi: IApi) {}
   async execute(id: number): Promise<IPokemon> {
     const { data } = await this.pokemonApi.get(`/pokemon/${id}`);

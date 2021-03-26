@@ -1,5 +1,5 @@
 import {HttpResponse, IApi} from '../protocols/api';
-import {GetPokemonData} from './get-pokemon-data';
+import {GetPokemonDataService} from './get-pokemon-data';
 
 const makeSut = () => {
   class AxiosAdapterStub implements IApi {
@@ -21,7 +21,7 @@ const makeSut = () => {
   }
 
   const axiosAdapterStub = new AxiosAdapterStub();
-  const sut = new GetPokemonData(axiosAdapterStub);
+  const sut = new GetPokemonDataService(axiosAdapterStub);
   return {axiosAdapterStub, sut};
 };
 
