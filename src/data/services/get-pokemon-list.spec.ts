@@ -1,0 +1,36 @@
+import {HttpResponse, IApi} from '../protocols/api';
+import {GetPokemonListService} from './get-pokemon-list';
+
+const makeSut = () => {
+  class AxiosAdapterStub implements IApi {
+    async get(path: string): Promise<HttpResponse> {
+      return Promise.resolve({
+        data: {
+          pokemon: [{
+            pokemon: { name: "any_pokemon", url: "/pokemon/1/" },
+            slot: 1,
+          }]
+        },
+        status: {
+          code: 200,
+          message: 'any_message',
+        },
+      });
+    }
+  }
+
+  const axiosAdapterStub = new AxiosAdapterStub();
+  const sut = new GetPokemonListService(axiosAdapterStub);
+  return {axiosAdapterStub, sut};
+};
+
+describe('Get Pokemon List', () => {
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+  it('should be ensure that is a valid pokemon data', async () => {
+    const {sut} = makeSut();
+    const pokemonList = await sut.execute();
+    expect(Object.keys(pokemonList).length).toBeGreaterThan(0);
+  });
+});
