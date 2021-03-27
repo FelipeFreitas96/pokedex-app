@@ -18,7 +18,7 @@ export default () => {
     const service = new GetPokemonListService(instance);
     const pokemonList = await service.execute();
     return pokemonList.map((pokemon, index) => {
-  return (
+      return (
         <PokemonCard
           key={`pokemon_${index}`}
           name={pokemon.name}
@@ -31,14 +31,14 @@ export default () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
-    <View
-      style={{
-        flex: 1,
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-      }}>
+        <View 
+        style={{
+          flex: 1,
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+        }}>
         {pokemonList}
-    </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
