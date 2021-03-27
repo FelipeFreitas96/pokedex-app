@@ -21,7 +21,7 @@ export type PokemonType = {
   secondary: string;
 };
 
-export interface IPokemon {
+export type IPokemon = {
   name: string;
   type: Partial<PokemonType>;
 }
