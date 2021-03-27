@@ -33,4 +33,17 @@ describe('Get Pokemon List', () => {
     const pokemonList = await sut.execute();
     expect(Object.keys(pokemonList).length).toBeGreaterThan(0);
   });
+  it('should be ensure throws when cannot access the pokemon api', async () => {
+    const {sut, axiosAdapterStub} = makeSut();
+    jest.spyOn(axiosAdapterStub, 'get').mockImplementationOnce(async () => {
+      return Promise.resolve({
+        data: null,
+        status: {
+          code: 500,
+          message: 'any_message'
+        }
+      });
+    });
+    expect(sut.execute()).rejects.toThrowError();
+  });
 });
