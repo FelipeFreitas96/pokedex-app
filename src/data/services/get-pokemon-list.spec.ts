@@ -28,7 +28,7 @@ describe('Get Pokemon List', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
-  it('should be ensure that is a valid pokemon data', async () => {
+  it('should be ensure that pokemon data is correct', async () => {
     const {sut} = makeSut();
     const pokemonList = await sut.execute();
     expect(Object.keys(pokemonList).length).toBeGreaterThan(0);

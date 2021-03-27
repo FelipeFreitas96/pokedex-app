@@ -26,12 +26,12 @@ const makeSut = () => {
 };
 
 describe('Get Pokemon Data', () => {
-  it('should be successful when pokemon exists', async () => {
+  it('should be return successful when a pokemon exists', async () => {
     const {sut} = makeSut();
     const response = await sut.execute(1);
     expect(response.name).toBe('any_pokemon');
   });
-  it('should throws when pokemon not exists', async () => {
+  it('should be return throws when a pokemon not exists', async () => {
     const {sut, axiosAdapterStub} = makeSut();
     jest.spyOn(axiosAdapterStub, 'get').mockImplementationOnce(async () => {
       return Promise.resolve({
