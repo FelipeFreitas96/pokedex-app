@@ -15,14 +15,66 @@ export interface IPokemonCardComponent {
 export const PokemonCardTypes: {
   [type: string]: IPokemonType;
 } = {
+  bug: {
+    primary: "#a8b820",
+    secondary: '#ccdd39',
+  },
+  dragon: {
+    primary: "#7038f8",
+    secondary: '#8b5dfc',
+  },
+  electric: {
+    primary: "#f8d030",
+    secondary: '#fcdb58',
+  },
+  fighting: {
+    primary: '#c03028',
+    secondary: '#ea5149',
+  },
   fire: {
-    primary: '#fb6c6c',
-    secondary: '#f88c8c',
+    primary: '#f08030',
+    secondary: '#fc9b55',
+  },
+  flying: {
+    primary: '#a890f0',
+    secondary: '#c5b3fc',
+  },
+  ghost: {
+    primary: '#705898',
+    secondary: '#9f86c9',
   },
   grass: {
-    primary: '#48d0b0',
-    secondary: '#61e1c9',
+    primary: '#78c850',
+    secondary: '#9fec78',
   },
+  ground: {
+    primary: '#e0c068',
+    secondary: '#e6ce8d',
+  },
+  ice: {
+    primary: '#98d8d8',
+    secondary: '#afecec',
+  },
+  normal: {
+    primary: '#a8a878',
+    secondary: '#c7c79b',
+  },
+  poison: {
+    primary: '#a040a0',
+    secondary: '#c15cc1',
+  },
+  psychic: {
+    primary: '#f85888',
+    secondary: '#ff85aa',
+  },
+  rock: {
+    primary: '#b8a038',
+    secondary: '#dbc358',
+  },
+  water: {
+    primary: '#6890f0',
+    secondary: '#8cadfc',
+  }
 };
 
 interface IPokemonCardStyle extends StyledComponentBase<any, any, {}, never> {
