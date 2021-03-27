@@ -66,4 +66,25 @@ describe('Get Pokemon List', () => {
     const pokemonList = await sut.execute();
     expect(Object.keys(pokemonList).length).toEqual(0);
   });
+  it('should be ensure add secondary type when slot id equals 2', async () => {
+    const {sut, axiosAdapterStub} = makeSut();
+    jest.spyOn(axiosAdapterStub, 'get').mockImplementation(async () => {
+      return Promise.resolve({
+        data: {
+          pokemon: [{
+            pokemon: { name: "any_pokemon", url: "/pokemon/1/" },
+            slot: 2,
+          }]
+        },
+        status: {
+          code: 200,
+          message: 'any_message',
+        },
+      });
+    });
+
+    const pokemonList = await sut.execute();
+    expect(Object.keys(pokemonList).length).toBeGreaterThan(0);
+    expect(pokemonList[0].type.secondary).not.toBeNull();
+  });
 });
