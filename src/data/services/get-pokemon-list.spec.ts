@@ -46,4 +46,24 @@ describe('Get Pokemon List', () => {
     });
     expect(sut.execute()).rejects.toThrowError();
   });
+  it('should be ensure throws when pokemon id is not of first generation', async () => {
+    const {sut, axiosAdapterStub} = makeSut();
+    jest.spyOn(axiosAdapterStub, 'get').mockImplementation(async () => {
+      return Promise.resolve({
+        data: {
+          pokemon: [{
+            pokemon: { name: "any_pokemon", url: "/pokemon/200/" },
+            slot: 1,
+          }]
+        },
+        status: {
+          code: 200,
+          message: 'any_message',
+        },
+      });
+    });
+
+    const pokemonList = await sut.execute();
+    expect(Object.keys(pokemonList).length).toEqual(0);
+  });
 });
