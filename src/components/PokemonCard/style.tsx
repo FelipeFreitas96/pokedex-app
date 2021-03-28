@@ -47,6 +47,7 @@ interface IPokemonCardStyle extends StyledComponentBase<any, any, {}, never> {
               Secondary?: any;
             };
       };
+  Portrait?: any;
 }
 
 const PokemonCard: IPokemonCardStyle = styled(View)`
@@ -80,5 +81,12 @@ PokemonCard.Tag.Text = styled(Text)`
   border-radius: 100px;
   color: white;
   font-size: ${normalize(11)};
+`;
+PokemonCard.Portrait = styled(View)`
+  position: absolute;
+  bottom: 10;
+  right: 10;
+  justify-content: center;
+  align-content: center;
 `;
 export default PokemonCard;
