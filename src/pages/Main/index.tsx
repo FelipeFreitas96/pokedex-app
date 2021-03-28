@@ -20,9 +20,10 @@ export default () => {
     return pokemonList.map((pokemon, index) => {
       return (
         <PokemonCard
-          key={`pokemon_${index}`}
+          key={`pokemon_${pokemon.id}`}
           name={pokemon.name}
           types={{ primary: pokemon.type.primary, secondary: pokemon.type.secondary }}
+          id={pokemon.id}
         />
       );
     });

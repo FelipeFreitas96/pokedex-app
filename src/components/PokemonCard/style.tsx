@@ -8,73 +8,29 @@ export type IPokemonType = {
 };
 
 export interface IPokemonCardComponent {
+  id: number;
   name: string;
   types: Partial<IPokemonType>;
 }
 
 export const PokemonCardTypes: {
-  [type: string]: IPokemonType;
+  [type: string]: string;
 } = {
-  bug: {
-    primary: "#a8b820",
-    secondary: '#ccdd39',
-  },
-  dragon: {
-    primary: "#7038f8",
-    secondary: '#8b5dfc',
-  },
-  electric: {
-    primary: "#f8d030",
-    secondary: '#fcdb58',
-  },
-  fighting: {
-    primary: '#c03028',
-    secondary: '#ea5149',
-  },
-  fire: {
-    primary: '#f08030',
-    secondary: '#fc9b55',
-  },
-  flying: {
-    primary: '#a890f0',
-    secondary: '#c5b3fc',
-  },
-  ghost: {
-    primary: '#705898',
-    secondary: '#9f86c9',
-  },
-  grass: {
-    primary: '#78c850',
-    secondary: '#9fec78',
-  },
-  ground: {
-    primary: '#e0c068',
-    secondary: '#e6ce8d',
-  },
-  ice: {
-    primary: '#98d8d8',
-    secondary: '#afecec',
-  },
-  normal: {
-    primary: '#a8a878',
-    secondary: '#c7c79b',
-  },
-  poison: {
-    primary: '#a040a0',
-    secondary: '#c15cc1',
-  },
-  psychic: {
-    primary: '#f85888',
-    secondary: '#ff85aa',
-  },
-  rock: {
-    primary: '#b8a038',
-    secondary: '#dbc358',
-  },
-  water: {
-    primary: '#6890f0',
-    secondary: '#8cadfc',
-  }
+  bug: '#a8b820',
+  dragon: '#7038f8',
+  electric: '#f8d030',
+  fighting: '#c03028',
+  fire: '#f08030',
+  flying: '#a890f0',
+  ghost: '#705898',
+  grass: '#78c850',
+  ground: '#e0c068',
+  ice: '#98d8d8',
+  normal: '#a8a878',
+  poison: '#a040a0',
+  psychic: '#f85888',
+  rock: '#b8a038',
+  water: '#6890f0',
 };
 
 interface IPokemonCardStyle extends StyledComponentBase<any, any, {}, never> {
@@ -91,13 +47,15 @@ interface IPokemonCardStyle extends StyledComponentBase<any, any, {}, never> {
               Secondary?: any;
             };
       };
+  Portrait?: any;
 }
 
 const PokemonCard: IPokemonCardStyle = styled(View)`
+  position: relative;
   flex: 1 1 50%;
   max-width: 49%;
   background-color: ${(props: {types: Partial<IPokemonType>}) =>
-    PokemonCardTypes[props.types.primary.toLowerCase()].primary};
+    PokemonCardTypes[props.types.primary.toLowerCase()]};
   padding: 10px;
   height: 140px;
   margin: 0.5%;
@@ -118,11 +76,17 @@ PokemonCard.Tag = styled(View)`
   flex-direction: row;
 `;
 PokemonCard.Tag.Text = styled(Text)`
-  background-color: ${(props: {types: Partial<IPokemonType>}) =>
-    PokemonCardTypes[props.types.primary.toLowerCase()].secondary};
+  background-color: #ffffff4d;
   padding: 5px 15px;
   border-radius: 100px;
   color: white;
   font-size: ${normalize(11)};
+`;
+PokemonCard.Portrait = styled(View)`
+  position: absolute;
+  bottom: 10;
+  right: 10;
+  justify-content: center;
+  align-content: center;
 `;
 export default PokemonCard;

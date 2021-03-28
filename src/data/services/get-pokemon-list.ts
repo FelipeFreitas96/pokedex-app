@@ -24,6 +24,7 @@ export class GetPokemonListService implements IGetPokemonList {
 
         if (pokemonList[pokemonId - 1] === undefined) {
           pokemonList[pokemonId - 1] = {
+            id: pokemonId,
             name: capitalize(pokemon.name),
             type: {},
           }

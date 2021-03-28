@@ -22,6 +22,7 @@ export type PokemonType = {
 };
 
 export type IPokemon = {
+  id: number;
   name: string;
   type: Partial<PokemonType>;
 }
