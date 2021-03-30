@@ -1,4 +1,4 @@
-import { IPokemon } from "../entities/pokemon";
+import { IPokemon } from "#/domain/entities/pokemon";
 
 export interface IGetPokemonList {
   execute(): Promise<IPokemon[]>;
