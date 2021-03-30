@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { SvgUri } from 'react-native-svg';
 import PokeballSVG from '../../resources/svg/pokeball-icon.svg';
+import PokemonPortrait from '../PokemonPortrait';
 import PokemonCard, {IPokemonCardComponent} from './style';
 
 export default (_props: IPokemonCardComponent) => {
@@ -32,11 +32,7 @@ export default (_props: IPokemonCardComponent) => {
           fill="white"
           style={{ position: 'absolute', opacity: 0.5 }}
         />
-        <SvgUri
-          width="80%"
-          height="80%"
-          uri={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${_props.id}.svg`}
-        />
+        <PokemonPortrait pokemonId={_props.id} />
       </PokemonCard.Portrait>
     </PokemonCard>
   );
