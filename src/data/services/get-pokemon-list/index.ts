@@ -35,12 +35,18 @@ export class GetPokemonListService implements IGetPokemonList {
           pokemonList[pokemonId - 1] = {
             id: pokemonId,
             name: capitalize(pokemon.name),
+            types: {},
           }
         }
 
         const pokemonTypeByCondition = (slot === 1 ? "primary" : "secondary");
+        pokemonList[pokemonId - 1].types[pokemonTypeByCondition] = {
+          name: capitalize(pokemonType),
+          color: PokemonTypesColor[pokemonType],
+        };
       }
     }
 
+    return pokemonList.filter(item => item);
   }
 }

@@ -13,19 +13,19 @@ export default (_props: IPokemonCardComponent) => {
       <PokemonCard.Name>{_props.name}</PokemonCard.Name>
       <PokemonCard.Tags>
         <PokemonCard.Tag>
-          <PokemonCard.Tag.Text types={types}>
-            {_props.types.primary}
+          <PokemonCard.Tag.Text>
+            {_props.types.primary.name}
           </PokemonCard.Tag.Text>
         </PokemonCard.Tag>
         {_props.types.secondary && (
           <PokemonCard.Tag>
-            <PokemonCard.Tag.Text types={types}>
-              {_props.types.secondary}
+            <PokemonCard.Tag.Text>
+              {_props.types.secondary.name}
             </PokemonCard.Tag.Text>
           </PokemonCard.Tag>
         )}
       </PokemonCard.Tags>
-      <PokemonCard.Portrait style={{ width: pokemonSize, height: pokemonSize }}>
+      <PokemonCard.Portrait style={{ width: pokemonSize, height: pokemonSize, alignItems: 'center' }}>
         <PokeballSVG
           width="100%"
           height="100%"
