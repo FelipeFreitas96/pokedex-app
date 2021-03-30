@@ -1,5 +1,5 @@
-import {IApi} from '../data/protocols/api';
-import {AxiosAdapter} from './axios-adapter';
+import {IApi} from '#/data/protocols/api';
+import {AxiosAdapter} from './index';
 
 describe('Test Axios Adapter', () => {
   let sut: IApi;

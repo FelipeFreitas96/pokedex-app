@@ -1,5 +1,5 @@
 import axios, {AxiosInstance} from 'axios';
-import {HttpResponse, IApi} from '../data/protocols/api';
+import {HttpResponse, IApi} from '#/data/protocols/api';
 
 export class AxiosAdapter implements IApi {
   private instance: AxiosInstance;
