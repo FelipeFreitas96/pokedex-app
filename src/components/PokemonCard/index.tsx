@@ -9,7 +9,7 @@ export default (_props: IPokemonCardComponent) => {
   const windowWidth = Dimensions.get('window').width;
   const pokemonSize = windowWidth * 0.25;
   return (
-    <PokemonCard types={types}>
+    <PokemonCard types={types} onPress={_props?.onPress}>
       <PokemonCard.Name>{_props.name}</PokemonCard.Name>
       <PokemonCard.Tags>
         <PokemonCard.Tag>
