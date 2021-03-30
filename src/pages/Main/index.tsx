@@ -1,46 +1,42 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, View} from 'react-native';
-import PokemonCard from '../../components/PokemonCard';
-import { AxiosAdapter } from '../../infra/axios-adapter';
-import { GetPokemonListService } from '../../data/services/get-pokemon-list';
+import {SafeAreaView, FlatList} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import PokemonCard from '#/components/PokemonCard';
+import { IPokemon } from '#/domain/entities/pokemon';
+import { NavigationProp } from '#/main/protocols/routes';
 
-export default () => {
-  const [pokemonList, setPokemonList] = React.useState([]);
+export const MainPage = ({ pokemonList }: { pokemonList: IPokemon[] }) => {
+  const [page, setPage] = React.useState(1);
+  const navigation: NavigationProp<'MainPage'> = useNavigation();
+  const filteredData = pokemonList.slice(0, page * 10);
+  const onPressOnPokemonCard = (pokemon: IPokemon) => navigation.push('PokemonInfoPage', pokemon);
+  const onEndReached = () => setPage(prevPage => prevPage + 1);
 
-  React.useEffect(() => {
-    (async () => {
-      setPokemonList(await renderPokemons());
-    })();
-  }, []);
-  
-  const renderPokemons = React.useCallback(async () => {
-    const instance = new AxiosAdapter();
-    const service = new GetPokemonListService(instance);
-    const pokemonList = await service.execute();
-    return pokemonList.map((pokemon, index) => {
-      return (
-        <PokemonCard
-          key={`pokemon_${pokemon.id}`}
-          name={pokemon.name}
-          types={{ primary: pokemon.type.primary, secondary: pokemon.type.secondary }}
-          id={pokemon.id}
-        />
-      );
-    });
-  }, []);
+  const renderItem = (props: any) => {
+    const pokemon = props.item;
+    return (
+      <PokemonCard
+        key={`pokemon_${pokemon.id}`}
+        name={pokemon.name}
+        types={pokemon.types}
+        id={pokemon.id}
+        onPress={() => onPressOnPokemonCard(pokemon)}
+      />
+    );
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView>
-        <View 
-        style={{
-          flex: 1,
-          flexWrap: 'wrap',
-          flexDirection: 'row',
-        }}>
-        {pokemonList}
-        </View>
-      </ScrollView>
+      <FlatList
+        numColumns={2}
+        scrollEventThrottle={1900}
+        data={filteredData}
+        initialNumToRender={6}
+        renderItem={renderItem}
+        keyExtractor={(item: any) => item.id}
+        onEndReached={onEndReached}
+        onEndReachedThreshold={0.1}
+      />
     </SafeAreaView>
   );
 };
