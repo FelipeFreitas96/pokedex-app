@@ -17,6 +17,16 @@ export class GetPokemonListService implements IGetPokemonList {
       for (const pokemonData of response.data.pokemon) {
         const { pokemon, slot } = pokemonData;
         const regex = new RegExp('/pokemon/(.*)/', 'g');
+        if (!regex) {
+          continue;
+        }
+
+        const pokemonRegex = regex.exec(pokemon.url);
+        if (!pokemonRegex || !pokemonRegex[1]) {
+          continue;
+        }
+
+        const pokemonId = Number(pokemonRegex[1]);
         if (pokemonId > 151) {
           continue;
         }  
