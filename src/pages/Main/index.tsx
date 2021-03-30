@@ -12,7 +12,7 @@ export const MainPage = ({ pokemonList }: { pokemonList: IPokemon[] }) => {
   const onPressOnPokemonCard = (pokemon: IPokemon) => navigation.push('PokemonInfoPage', pokemon);
   const onEndReached = () => setPage(prevPage => prevPage + 1);
 
-  const renderItem = (props: any) => {
+  const renderItem = React.useCallback((props: any) => {
     const pokemon = props.item;
     return (
       <PokemonCard
@@ -23,19 +23,21 @@ export const MainPage = ({ pokemonList }: { pokemonList: IPokemon[] }) => {
         onPress={() => onPressOnPokemonCard(pokemon)}
       />
     );
-  };
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <FlatList
         numColumns={2}
-        scrollEventThrottle={1900}
+        scrollEventThrottle={2000}
         data={filteredData}
-        initialNumToRender={6}
+        initialNumToRender={8}
+        maxToRenderPerBatch={8}
         renderItem={renderItem}
-        keyExtractor={(item: any) => item.id}
+        keyExtractor={(pokemon: IPokemon) => pokemon.name}
         onEndReached={onEndReached}
-        onEndReachedThreshold={0.1}
+        onEndReachedThreshold={0.5}
+        windowSize={70}
       />
     </SafeAreaView>
   );
