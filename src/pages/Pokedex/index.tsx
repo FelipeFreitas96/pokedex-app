@@ -1,15 +1,13 @@
 import React from 'react';
-import {SafeAreaView, FlatList} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import PokemonCard from '#/components/PokemonCard';
-import { IPokemon } from '#/domain/entities/pokemon';
-import { NavigationProp } from '#/main/protocols/routes';
+import { IPokemon, PokedexPageProps } from '#/domain/entities';
+import { SafeAreaView, FlatList } from 'react-native';
 
-export const MainPage = ({ pokemonList }: { pokemonList: IPokemon[] }) => {
+export const PokedexPage = (props: PokedexPageProps) => {
   const [page, setPage] = React.useState(1);
-  const navigation: NavigationProp<'MainPage'> = useNavigation();
+  const { navigation, pokemonList } = props;
   const filteredData = pokemonList.slice(0, page * 10);
-  const onPressOnPokemonCard = (pokemon: IPokemon) => navigation.push('PokemonInfoPage', pokemon);
+  const onPressOnPokemonCard = (pokemon: IPokemon) => navigation.push('PokemonInfo', pokemon);
   const onEndReached = () => setPage(prevPage => prevPage + 1);
 
   const renderItem = React.useCallback((props: any) => {

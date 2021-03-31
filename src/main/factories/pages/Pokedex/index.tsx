@@ -1,9 +1,9 @@
 import React from 'react';
-import { IPokemon } from '#/domain/entities/pokemon';
+import { IPokemon } from '#/domain/entities';
 import { makeGetPokemonList } from '#/main/factories/usecases';
-import { MainPage } from '#/pages';
+import { PokedexPage } from '#/pages';
 
-export const makeMainPage = () => {
+export const makePokedexPage = (props: any) => {
   const [pokemonList, setPokemonList] = React.useState<IPokemon[]>([]);
 
   React.useEffect(() => {
@@ -20,7 +20,9 @@ export const makeMainPage = () => {
   }
 
   return (
-    <MainPage
+    <PokedexPage
+      {...props}
+      navigation={props.navigation}
       pokemonList={pokemonList}
     />
   );
