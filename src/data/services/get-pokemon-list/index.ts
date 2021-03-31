@@ -1,4 +1,4 @@
-import { IPokemon, PokemonTypes, PokemonTypesColor } from '#/domain/entities/pokemon';
+import { IPokemon, PokemonTypes, PokemonTypesColor } from '#/domain/entities';
 import { IGetPokemonList} from '#/domain/usecase/get-pokemon-list';
 import { capitalize } from '#/helper/capitalize';
 import { IApi } from '#/data/protocols/api';

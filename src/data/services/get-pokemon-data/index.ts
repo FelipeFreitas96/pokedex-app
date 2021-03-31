@@ -1,4 +1,4 @@
-import {IPokemon, PokemonTypesColor} from '#/domain/entities/pokemon';
+import {IPokemon, PokemonTypesColor} from '#/domain/entities';
 import {IGetPokemonData} from '#/domain/usecase/get-pokemon-data';
 import {IApi} from '#/data/protocols/api';
 
