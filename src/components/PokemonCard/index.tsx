@@ -12,11 +12,13 @@ export default (_props: IPokemonCardComponent) => {
     <PokemonCard types={types} onPress={_props?.onPress}>
       <PokemonCard.Name>{_props.name}</PokemonCard.Name>
       <PokemonCard.Tags>
-        <PokemonCard.Tag>
-          <PokemonCard.Tag.Text>
-            {_props.types.primary.name}
-          </PokemonCard.Tag.Text>
-        </PokemonCard.Tag>
+        {_props.types.primary && (
+          <PokemonCard.Tag>
+            <PokemonCard.Tag.Text>
+              {_props.types.primary.name}
+            </PokemonCard.Tag.Text>
+          </PokemonCard.Tag>
+        )}
         {_props.types.secondary && (
           <PokemonCard.Tag>
             <PokemonCard.Tag.Text>
