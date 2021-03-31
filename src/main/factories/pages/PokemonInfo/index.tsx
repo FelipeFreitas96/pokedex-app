@@ -1,7 +1,7 @@
 import React from 'react';
 import { PokemonInfoPage } from '#/pages';
-import { NavigationProp } from '#/main/protocols/routes';
+import { PokemonInfoProps } from '#/domain/entities';
 
-export const makePokemonInfoPage = (props: NavigationProp<'PokemonInfo'>) => (
+export const makePokemonInfoPage = (props: PokemonInfoProps) => (
   <PokemonInfoPage {...props} />
 );
