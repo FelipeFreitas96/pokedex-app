@@ -1,5 +1,5 @@
-import {HttpResponse, IApi} from '../protocols/api';
-import {GetPokemonListService} from './get-pokemon-list';
+import {HttpResponse, IApi} from '#/data/protocols/api';
+import {GetPokemonListService} from '.';
 
 const makeSut = () => {
   class AxiosAdapterStub implements IApi {
@@ -85,6 +85,6 @@ describe('Get Pokemon List', () => {
 
     const pokemonList = await sut.execute();
     expect(Object.keys(pokemonList).length).toBeGreaterThan(0);
-    expect(pokemonList[0].type.secondary).not.toBeNull();
+    expect(pokemonList[0].types.secondary).not.toBeNull();
   });
 });

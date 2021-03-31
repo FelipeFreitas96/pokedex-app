@@ -1,7 +1,7 @@
-import { IPokemon, PokemonTypes } from '../../domain/entities/pokemon';
-import { IGetPokemonList} from '../../domain/usecase/get-pokemon-list';
-import { capitalize } from '../../helper/capitalize';
-import { IApi } from '../protocols/api';
+import { IPokemon, PokemonTypes, PokemonTypesColor } from '#/domain/entities/pokemon';
+import { IGetPokemonList} from '#/domain/usecase/get-pokemon-list';
+import { capitalize } from '#/helper/capitalize';
+import { IApi } from '#/data/protocols/api';
 
 export class GetPokemonListService implements IGetPokemonList {
   constructor(private readonly pokemonApi: IApi) {}
@@ -17,7 +17,16 @@ export class GetPokemonListService implements IGetPokemonList {
       for (const pokemonData of response.data.pokemon) {
         const { pokemon, slot } = pokemonData;
         const regex = new RegExp('/pokemon/(.*)/', 'g');
-        const pokemonId = Number(regex.exec(pokemon.url)[1]);
+        if (!regex) {
+          continue;
+        }
+
+        const pokemonRegex = regex.exec(pokemon.url);
+        if (!pokemonRegex || !pokemonRegex[1]) {
+          continue;
+        }
+
+        const pokemonId = Number(pokemonRegex[1]);
         if (pokemonId > 151) {
           continue;
         }  
@@ -26,15 +35,18 @@ export class GetPokemonListService implements IGetPokemonList {
           pokemonList[pokemonId - 1] = {
             id: pokemonId,
             name: capitalize(pokemon.name),
-            type: {},
+            types: {},
           }
         }
 
         const pokemonTypeByCondition = (slot === 1 ? "primary" : "secondary");
-        pokemonList[pokemonId - 1].type[pokemonTypeByCondition] = capitalize(pokemonType);
+        pokemonList[pokemonId - 1].types[pokemonTypeByCondition] = {
+          name: capitalize(pokemonType),
+          color: PokemonTypesColor[pokemonType],
+        };
       }
     }
 
-    return pokemonList;
+    return pokemonList.filter(item => item);
   }
 }
