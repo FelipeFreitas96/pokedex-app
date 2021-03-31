@@ -18,7 +18,7 @@ interface IPokemonInfoStyle extends StyledComponentBase<any, any, {}, never> {
 
 const PokemonInfo: IPokemonInfoStyle = styled(View)`
   flex: 1;
-  background-color: ${(props: {types: Partial<PokemonType>}) =>
+  background-color: ${(props: {types: PokemonType}) =>
     props.types.primary.color};
 `;
 
